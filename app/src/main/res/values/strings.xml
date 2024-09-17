@@ -1,0 +1,5 @@
+<resources>
+    <string name="screensaver_text">This is Demo Screen Saver</string>
+    <string name="screen_saver_background">ScreenSaver Background content Description</string>
+    <string name="app_name">ScreenSaverDemo</string>
+</resources>
