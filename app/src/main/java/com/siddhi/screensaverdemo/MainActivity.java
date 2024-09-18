@@ -5,6 +5,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
+import android.util.Log;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -18,7 +19,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && !Settings.canDrawOverlays(this)) {
+        if (!Settings.canDrawOverlays(this)) {
+            Log.d("MainActivity", "Request Permission");
             Intent intent = new Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION,
                     Uri.parse("package:" + getPackageName()));
             startActivityForResult(intent, REQUEST_CODE_OVERLAY_PERMISSION);
@@ -45,5 +47,6 @@ public class MainActivity extends AppCompatActivity {
     private void startService() {
         Intent serviceIntent = new Intent(this, GlobalTouchService.class);
         startService(serviceIntent);
+        Log.d("MainActivity", "Start GlobalTouchService");
     }
 }

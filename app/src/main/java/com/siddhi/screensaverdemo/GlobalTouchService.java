@@ -43,7 +43,7 @@ public class GlobalTouchService extends Service implements View.OnTouchListener 
     @Override
     public void onCreate() {
         super.onCreate();
-
+        Log.d("GlobalTouchService", "Service created");
         mTouchLayout = new LinearLayout(this);
         LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.MATCH_PARENT,
@@ -62,7 +62,8 @@ public class GlobalTouchService extends Service implements View.OnTouchListener 
                     WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY, // Use this for Android 13+
                     WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE |
                             WindowManager.LayoutParams.FLAG_WATCH_OUTSIDE_TOUCH |
-                            WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE,
+                            WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE |
+                            WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL,
                     PixelFormat.TRANSLUCENT
             );
         } else {
@@ -72,7 +73,8 @@ public class GlobalTouchService extends Service implements View.OnTouchListener 
                     WindowManager.LayoutParams.TYPE_SYSTEM_ALERT,
                     WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE |
                             WindowManager.LayoutParams.FLAG_WATCH_OUTSIDE_TOUCH |
-                            WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE,
+                            WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE |
+                            WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL,
                     PixelFormat.TRANSLUCENT
             );
         }
