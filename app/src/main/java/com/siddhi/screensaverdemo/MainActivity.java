@@ -19,14 +19,15 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        if (!Settings.canDrawOverlays(this)) {
-            Log.d("MainActivity", "Request Permission");
-            Intent intent = new Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION,
-                    Uri.parse("package:" + getPackageName()));
-            startActivityForResult(intent, REQUEST_CODE_OVERLAY_PERMISSION);
-        } else {
-            startService();
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            if (!Settings.canDrawOverlays(this)) {
+                Intent intent = new Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION, Uri.parse("package:" + getPackageName()));
+                startActivityForResult(intent, REQUEST_CODE_OVERLAY_PERMISSION);
+            } else {
+                startService();
+            }
         }
+
     }
 
     @Override
@@ -45,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void startService() {
-        Intent serviceIntent = new Intent(this, GlobalTouchService.class);
+        Intent serviceIntent = new Intent(getApplicationContext(), GlobalTouchService.class);
         startService(serviceIntent);
         Log.d("MainActivity", "Start GlobalTouchService");
     }

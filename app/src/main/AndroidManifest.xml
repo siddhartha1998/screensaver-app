@@ -5,6 +5,7 @@
     <!-- Optional: Declare permissions, e.g., if you need to access the Internet -->
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <uses-permission android:name="android.permission.TYPE_APPLICATION_OVERLAY" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
 
     <!-- The application tag contains metadata about the app -->
@@ -27,8 +28,7 @@
 
         <service android:name=".GlobalTouchService"
             android:enabled="true"
-            android:exported="false"
-            android:permission="android.permission.SYSTEM_ALERT_WINDOW">
+            android:exported="false">
 
         </service>
 
